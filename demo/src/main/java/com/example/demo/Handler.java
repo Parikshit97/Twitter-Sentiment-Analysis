@@ -17,30 +17,42 @@ public class Handler {
 
     public Hotels[] receiverequest(RankingRequest req) throws IOException {
 
-        Hotels hotels[] = dataGather.gatherthroughes(req);
+        String userprofileid = req.userprofileid;
+        System.out.println(userprofileid);
+
+        Hotels hotels[] = dataGather.gatherthroughes(req); //hoteldetails
         ArrayList<Hotels> hotel_list = new ArrayList<>(Arrays.asList(hotels));
 
         Feature hotelbr = new HotelBR();
         Feature hotelbtod = new HotelBtoD();
         Feature hotelctr = new HotelCtr();
         Feature hotelrbr = new HotelRBR();
+        Feature hxubr = new HXUBR();
+        Feature hxuctr = new HXUCTR();
+        Feature hxubtod = new HXUBtoD();
 
         ArrayList<Feature> ifeatures = new ArrayList<>();
         ifeatures.add(hotelbr);
         ifeatures.add(hotelbtod);
         ifeatures.add(hotelctr);
         ifeatures.add(hotelrbr);
+        ifeatures.add(hxubr);
+        ifeatures.add(hxuctr);
+        ifeatures.add(hxubtod);
 
         HashMap<String, HashMap<String, Double>> calculated_features = new HashMap<>();
-        calculated_features.put("abcd", new HashMap<>());
-        calculated_features.put("bcde", new HashMap<>());
-        calculated_features.put("cdef", new HashMap<>());
+
+        for(Hotels hotel : hotel_list){
+            calculated_features.put(hotel.getHotel_id(), new HashMap<>());
+        }
 
         for(Feature ifeature : ifeatures){
 
             System.out.println(ifeature);
 
-            HashMap<String, HashMap<String, Double>>inner = ifeature.calculate(hotel_list);
+            HashMap<String, HashMap<String, Double>>inner = ifeature.calculate(hotel_list, userprofileid);
+
+//            System.out.println("Inner" + inner);
             ArrayList<String>hotelids = new ArrayList<>(inner.keySet());
 
             for(String hotelid : hotelids){
@@ -52,6 +64,7 @@ public class Handler {
         }
 
         System.out.println(calculated_features);
+
 
         return hotels;
     }

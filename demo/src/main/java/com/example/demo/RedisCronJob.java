@@ -22,7 +22,7 @@ import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 @Component
 public class RedisCronJob {
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 50000)
     public void fixedRateSch() throws IOException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
@@ -90,14 +90,10 @@ public class RedisCronJob {
             jedis.hset(document_id, "recomm_score", String.valueOf(recomm_score));
 
             hotels[j] = new Hotels(hotel_idc, hotel_type, ratingCount, user_abp, realised_bookings, total_bookings, total_details, total_impressions, recomm_score);
-            System.out.println(hotels[j]);
 
             j++;
         }
 
-        System.out.println("JMAP:"+jmap);
-
-        System.out.println();
 
         for(String document_id : document_ids){
             HashMap<String, String> hget = (HashMap<String, String>) jedis.hgetAll(document_id);
