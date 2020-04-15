@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 @RestController
 public class Controller {
@@ -20,13 +21,35 @@ public class Controller {
 
 
     @RequestMapping(value = "/rank", method = RequestMethod.POST)
-    public void allHotels(@RequestBody RankingRequest req) throws IOException {
+    public JSONObject[] allHotels(@RequestBody RankingRequest req) throws IOException {
 
 
         Hotels[] hotels = handler.receiverequest(req);
 
         Model model = new Model();
-        model.predictions(hotels);
+        JSONObject predictions = model.predictions(hotels);
+
+        Predictions[] preds = new Predictions[predictions.size()];
+        ArrayList<String> keys = new ArrayList<>(predictions.keySet());
+
+        PriorityQueue<Predictions> pq = new PriorityQueue<>();
+
+        for(int i=0 ; i<preds.length ; i++){
+            preds[i] = new Predictions(keys.get(i), (Double) predictions.get(keys.get(i)));
+            pq.add(preds[i]);
+        }
+
+        int j=0;
+        JSONObject[] rankedpreds = new JSONObject[preds.length];
+        while(pq.size()>0){
+            rankedpreds[j] = new JSONObject();
+            rankedpreds[j].put(pq.peek().hotelid, pq.peek().predval);
+            Predictions removed = pq.remove();
+            System.out.println(removed);
+            j++;
+        }
+        System.out.println(rankedpreds);
+        return rankedpreds;
     }
 
 }

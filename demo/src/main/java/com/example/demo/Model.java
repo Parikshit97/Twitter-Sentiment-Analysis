@@ -15,7 +15,7 @@ public class Model {
     RestTemplate restTemplate;
 
     @ResponseBody
-    public void predictions(Hotels[] hotels){
+    public JSONObject predictions(Hotels[] hotels){
         JSONObject outer = new JSONObject();
         JSONObject[] inner = new JSONObject[hotels.length];
         int inner_counter=0;
@@ -59,6 +59,6 @@ public class Model {
         RestTemplate restTemplate = new RestTemplate();
         JSONObject json = restTemplate.postForEntity(url+"/getprediction", outer, JSONObject.class).getBody();
         System.out.println(json.toJSONString());
-
+        return json;
     }
 }

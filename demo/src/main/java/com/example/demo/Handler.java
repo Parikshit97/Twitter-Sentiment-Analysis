@@ -52,7 +52,6 @@ public class Handler {
 
             HashMap<String, HashMap<String, Double>>inner = ifeature.calculate(hotel_list, userprofileid);
 
-//            System.out.println("Inner" + inner);
             ArrayList<String>hotelids = new ArrayList<>(inner.keySet());
 
             for(String hotelid : hotelids){
