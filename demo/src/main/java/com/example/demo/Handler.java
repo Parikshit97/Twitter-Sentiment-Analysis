@@ -15,7 +15,7 @@ public class Handler {
     @Autowired
     DataGather dataGather;
 
-    public Hotels[] receiverequest(RankingRequest req) throws IOException {
+    public Pair receiverequest(RankingRequest req) throws IOException {
 
         String userprofileid = req.userprofileid;
         System.out.println(userprofileid);
@@ -65,6 +65,6 @@ public class Handler {
         System.out.println(calculated_features);
 
 
-        return hotels;
+        return new Pair(hotels, calculated_features);
     }
 }

@@ -14,6 +14,7 @@ import jdk.nashorn.internal.parser.JSONParser;
 import net.minidev.json.JSONObject;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sun.awt.image.ImageWatched;
 
@@ -26,6 +27,9 @@ import java.util.List;
 
 @Component
 public class DataGather {
+
+    @Autowired
+    ElasticConfig elasticConfig;
 
     public Hotels[] gatherthroughes(RankingRequest req) throws IOException {
 
@@ -40,7 +44,6 @@ public class DataGather {
             i++;
         }
 
-        ElasticConfig elasticConfig = new ElasticConfig();
         JestClient jestClient = elasticConfig.jestClient();
 
         String search = "{" +

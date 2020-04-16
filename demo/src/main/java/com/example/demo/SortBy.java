@@ -1,12 +1,14 @@
 package com.example.demo;
 
 import net.minidev.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.PriorityQueue;
 
+@Component
 public class SortBy {
 
     public JSONObject[] popularity(JSONObject predictions){

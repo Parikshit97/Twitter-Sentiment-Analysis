@@ -7,6 +7,7 @@ import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.SearchHit;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -22,6 +23,9 @@ import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 @Component
 public class RedisCronJob {
 
+    @Autowired
+    ElasticConfig elasticConfig;
+
     @Scheduled(fixedRate = 50000)
     public void fixedRateSch() throws IOException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -30,7 +34,7 @@ public class RedisCronJob {
         String strDate = sdf.format(now);
         System.out.println("Fixed Rate scheduler:: " + strDate);
 
-        ElasticConfig elasticConfig = new ElasticConfig();
+//        ElasticConfig elasticConfig = new ElasticConfig();
         JestClient jestClient = elasticConfig.jestClient();
 
         ArrayList<String>document_ids= new ArrayList<>();

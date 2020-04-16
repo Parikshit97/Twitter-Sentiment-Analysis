@@ -19,20 +19,21 @@ public class Controller {
     @Autowired
     Handler handler;
 
+    @Autowired
+    SortBy sortBy;
 
     @RequestMapping(value = "/rank", method = RequestMethod.POST)
     public JSONObject[] allHotels(@RequestBody RankingRequest req) throws IOException {
 
 
-        Hotels[] hotels = handler.receiverequest(req);
+        Pair pair = handler.receiverequest(req);
 
-
-
-        SortBy sortBy = new SortBy();
+        Hotels[] hotels = pair.hotels;
+        HashMap<String, HashMap<String, Double>> calculated_features = pair.calculated_features;
 
         if(req.sortby.equals("popularity")) {
             Model model = new Model();
-            JSONObject predictions = model.predictions(hotels);
+            JSONObject predictions = model.predictions(hotels, calculated_features, req);
             return sortBy.popularity(predictions);
         }else if(req.sortby.equals("distance")){
             return sortBy.distance(req, hotels);
