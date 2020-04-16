@@ -26,30 +26,23 @@ public class Controller {
 
         Hotels[] hotels = handler.receiverequest(req);
 
-        Model model = new Model();
-        JSONObject predictions = model.predictions(hotels);
 
-        Predictions[] preds = new Predictions[predictions.size()];
-        ArrayList<String> keys = new ArrayList<>(predictions.keySet());
 
-        PriorityQueue<Predictions> pq = new PriorityQueue<>();
+        SortBy sortBy = new SortBy();
 
-        for(int i=0 ; i<preds.length ; i++){
-            preds[i] = new Predictions(keys.get(i), (Double) predictions.get(keys.get(i)));
-            pq.add(preds[i]);
+        if(req.sortby.equals("popularity")) {
+            Model model = new Model();
+            JSONObject predictions = model.predictions(hotels);
+            return sortBy.popularity(predictions);
+        }else if(req.sortby.equals("distance")){
+            return sortBy.distance(req, hotels);
+        }else if (req.sortby.equals("price")){
+            return  sortBy.price(req, hotels);
+        }else{
+            return null;
         }
 
-        int j=0;
-        JSONObject[] rankedpreds = new JSONObject[preds.length];
-        while(pq.size()>0){
-            rankedpreds[j] = new JSONObject();
-            rankedpreds[j].put(pq.peek().hotelid, pq.peek().predval);
-            Predictions removed = pq.remove();
-            System.out.println(removed);
-            j++;
-        }
-        System.out.println(rankedpreds);
-        return rankedpreds;
+
     }
 
 }
