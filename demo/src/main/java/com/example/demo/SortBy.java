@@ -26,7 +26,7 @@ public class SortBy {
         JSONObject[] rankedpreds = new JSONObject[preds.length];
         while(pq.size()>0){
             rankedpreds[j] = new JSONObject();
-            rankedpreds[j].put(pq.peek().hotelid, pq.peek().predval);
+            rankedpreds[j].put(pq.peek().getHotelid(), pq.peek().getPredval());
             Predictions removed = pq.remove();
             System.out.println(removed);
             j++;
@@ -41,7 +41,7 @@ public class SortBy {
         Predictions[] predictions = new Predictions[req.getHotelmap().size()];
         for(int i=0; i<hotels.length; i++){
             hotelids.add(hotels[i].getHotel_id());
-            predictions[i] = new Predictions(hotels[i].getHotel_id(), (Double)req.getHotelmap().get(hotels[i].getHotel_id()).distance);
+            predictions[i] = new Predictions(hotels[i].getHotel_id(), (Double)req.getHotelmap().get(hotels[i].getHotel_id()).getDistance());
             pq.add(predictions[i]);
         }
 
@@ -49,7 +49,7 @@ public class SortBy {
         JSONObject[] rankedpreds = new JSONObject[predictions.length];
         while(pq.size()>0){
             rankedpreds[j] = new JSONObject();
-            rankedpreds[j].put(pq.peek().hotelid, pq.peek().predval);
+            rankedpreds[j].put(pq.peek().getHotelid(), pq.peek().getPredval());
             Predictions removed = pq.remove();
             System.out.println(removed);
             j++;
@@ -65,7 +65,7 @@ public class SortBy {
         Predictions[] predictions = new Predictions[req.getHotelmap().size()];
         for(int i=0; i<hotels.length; i++){
             hotelids.add(hotels[i].getHotel_id());
-            predictions[i] = new Predictions(hotels[i].getHotel_id(), (Double)req.getHotelmap().get(hotels[i].getHotel_id()).sprice);
+            predictions[i] = new Predictions(hotels[i].getHotel_id(), (Double)req.getHotelmap().get(hotels[i].getHotel_id()).getSprice());
             pq.add(predictions[i]);
         }
 
@@ -73,7 +73,7 @@ public class SortBy {
         JSONObject[] rankedpreds = new JSONObject[predictions.length];
         while(pq.size()>0){
             rankedpreds[j] = new JSONObject();
-            rankedpreds[j].put(pq.peek().hotelid, pq.peek().predval);
+            rankedpreds[j].put(pq.peek().getHotelid(), pq.peek().getPredval());
             Predictions removed = pq.remove();
             System.out.println(removed);
             j++;

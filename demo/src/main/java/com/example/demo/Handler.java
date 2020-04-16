@@ -1,10 +1,10 @@
 package com.example.demo;
 
+import featureMake.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ public class Handler {
 
     public Pair receiverequest(RankingRequest req) throws IOException {
 
-        String userprofileid = req.userprofileid;
+        String userprofileid = req.getUserprofileid();
         System.out.println(userprofileid);
 
         Hotels hotels[] = dataGather.gatherthroughes(req); //hoteldetails

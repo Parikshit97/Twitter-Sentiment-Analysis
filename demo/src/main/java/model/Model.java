@@ -1,5 +1,7 @@
-package com.example.demo;
+package model;
 
+import com.example.demo.Hotels;
+import com.example.demo.RankingRequest;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ResponseBody;

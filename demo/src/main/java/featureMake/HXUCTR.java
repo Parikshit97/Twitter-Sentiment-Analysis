@@ -1,5 +1,7 @@
-package com.example.demo;
+package featureMake;
 
+import com.example.demo.ElasticConfig;
+import com.example.demo.Hotels;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.Get;
@@ -31,8 +33,8 @@ public class HXUCTR implements Feature {
                     continue;
                 }
 
-                long details_details = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).details;
-                long details_impressions = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).impressions;
+                long details_details = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).getDetails();
+                long details_impressions = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).getImpressions();
                 if(details_impressions == 0){
                     continue;
                 }

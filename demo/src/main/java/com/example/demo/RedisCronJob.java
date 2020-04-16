@@ -3,13 +3,7 @@ package com.example.demo;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.Get;
-import io.searchbox.core.Search;
-import io.searchbox.core.SearchResult;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.search.SearchHit;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
@@ -17,8 +11,6 @@ import redis.clients.jedis.Jedis;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 
 @Component
 public class RedisCronJob {

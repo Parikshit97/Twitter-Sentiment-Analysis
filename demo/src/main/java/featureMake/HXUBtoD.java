@@ -1,5 +1,7 @@
-package com.example.demo;
+package featureMake;
 
+import com.example.demo.ElasticConfig;
+import com.example.demo.Hotels;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.Get;
@@ -28,8 +30,8 @@ public class HXUBtoD implements Feature {
                     continue;
                 }
 
-                long details_bookings = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).bookings;
-                long details_details = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).details;
+                long details_bookings = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).getBookings();
+                long details_details = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).getDetails();
                 if(details_details == 0){
                     continue;
                 }

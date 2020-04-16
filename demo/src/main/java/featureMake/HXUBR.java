@@ -1,12 +1,13 @@
-package com.example.demo;
+package featureMake;
 
+import com.example.demo.ElasticConfig;
+import com.example.demo.Hotels;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.Get;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class HXUBR implements Feature {
@@ -30,8 +31,8 @@ public class HXUBR implements Feature {
                     continue;
                 }
 
-                long details_bookings = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).bookings;
-                long details_impressions = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).impressions;
+                long details_bookings = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).getBookings();
+                long details_impressions = hxu.getHxu_map().get(hotel.getHotel_id()).get(userprofileid).getImpressions();
                 if(details_impressions == 0){
                     continue;
                 }

@@ -1,7 +1,6 @@
-package com.example.demo;
+package featureMake;
 
-import org.springframework.web.servlet.tags.form.CheckboxesTag;
-import sun.tools.tree.Vset;
+import com.example.demo.Details;
 
 import java.util.Map;
 

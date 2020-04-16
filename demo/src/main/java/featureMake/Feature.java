@@ -1,4 +1,6 @@
-package com.example.demo;
+package featureMake;
+
+import com.example.demo.Hotels;
 
 import java.io.IOException;
 import java.util.ArrayList;

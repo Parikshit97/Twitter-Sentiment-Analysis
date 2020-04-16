@@ -18,7 +18,7 @@ public class Hotels {
     private long total_impressions;
     private long recomm_score;
 
-    Hotels( String hotel_id, long hotel_type, long ratingCount, long user_abp, long realised_bookings, long total_bookings, long total_details, long total_impressions, long recomm_score){
+    public Hotels(String hotel_id, long hotel_type, long ratingCount, long user_abp, long realised_bookings, long total_bookings, long total_details, long total_impressions, long recomm_score){
        this.hotel_id = hotel_id;
        this.hotel_type = hotel_type;
        this.ratingCount = ratingCount;
