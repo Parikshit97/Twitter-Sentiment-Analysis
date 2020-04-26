@@ -1,6 +1,7 @@
-package featureMake;
+package com.example.demo;
 
 import com.example.demo.Hotels;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;

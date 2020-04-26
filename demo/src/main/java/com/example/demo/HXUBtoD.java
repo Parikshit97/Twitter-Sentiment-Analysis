@@ -1,7 +1,5 @@
-package featureMake;
+package com.example.demo;
 
-import com.example.demo.ElasticConfig;
-import com.example.demo.Hotels;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.Get;

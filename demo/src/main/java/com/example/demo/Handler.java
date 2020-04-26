@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import featureMake.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +14,9 @@ public class Handler {
     @Autowired
     DataGather dataGather;
 
+    @Autowired
+    HotelBR hotelbr;
+
     public Pair receiverequest(RankingRequest req) throws IOException {
 
         String userprofileid = req.getUserprofileid();
@@ -23,7 +25,7 @@ public class Handler {
         Hotels hotels[] = dataGather.gatherthroughes(req); //hoteldetails
         ArrayList<Hotels> hotel_list = new ArrayList<>(Arrays.asList(hotels));
 
-        Feature hotelbr = new HotelBR();
+//        Feature hotelbr = new HotelBR();
         Feature hotelbtod = new HotelBtoD();
         Feature hotelctr = new HotelCtr();
         Feature hotelrbr = new HotelRBR();
